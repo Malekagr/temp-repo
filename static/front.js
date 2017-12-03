@@ -2,6 +2,52 @@
 var b = document.getElementById("theButton");
 
 
+function deleteCategory(button){
+     var element = button;
+     var val = element.nextSibling.nextSibling.value;
+     var xhr = new XMLHttpRequest();
+     console.log("DELETE: "+val)
+    xhr.open("DELETE", '/cats', true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    var data = JSON.stringify(
+                {
+                    del_budget_id: val
+                }
+    );
+    xhr.onload = function () {
+            var res = JSON.parse(xhr.responseText);
+            if (xhr.status !== 200) {
+                console.log("Network Error:" + xhr.status);
+                //signal();
+            }
+            if (res["completed"]) {
+                //signal('New category was created');
+                console.log("DELETE BUDGET - DELETE: /cats");
+                console.log('SENT: ');
+                console.log("BUDGET ID: "+data);
+                console.log('RECEIVED: ');
+                console.log(res);
+                console.log("--------------------------------");
+
+
+            }
+            else {
+                // Bad
+                console.log("Failed to delete");
+
+            }
+           // window.open(url, "_self");
+            window.location.replace('/');
+        };
+        xhr.send(data);
+}
+
+
+
+
+
+
+
 function addCategory() {
     var v = document.getElementById("BudgetValue").value;
     var n = document.getElementById("BudgetName").value;

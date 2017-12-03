@@ -17,8 +17,14 @@
             <input type="date" id="date" name="Purchase Date">
             <button onclick ="addUPurchase()">Add Uncategorized Purchase</button>
 		</form>
-
-
+<br>
+<br>
+            <input type="text" placeholder="Purchase Name" id="PN" name="BudgetName" value="" />
+			<input type="text" placeholder="Purchase Cost" id="PV" name="BudgetValue" value="" />
+            <input type="text" placeholder="Category" id="purchaseCat" name="BudgetValue" value="" />
+            <input type="date" id="datee" name="Purchase Date">
+            <button onclick ="addCPurchase()">Add Categorized Purchase</button>
+    <br>
     <h1>Create New Category</h1>
 
 
@@ -31,7 +37,10 @@
 
     {% for b in bl %}
 
-            <li><a href= "/purchases/{{ b.title }}">{{ b.title}}</a> - Budget: {{b.budgetSpent}}$/{{ b.budgetLimit}}$  </li>
+            <li><a href= "/purchases/{{ b.title }}">{{ b.title}}</a> - Budget: {{b.budgetSpent}}$/{{ b.budgetLimit}}$
+             <button onclick ="deleteCategory(this)">Remove</button>
+                <input type="hidden" placeholder="Event's name" id="pitemname" value="{{ b.id }}">
+            </li>
             <input type="hidden" placeholder="Event's name" name="chatRoomName" value="{{ b.title }}">
     {%  endfor %}
 

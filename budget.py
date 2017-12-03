@@ -64,6 +64,8 @@ def addCat(name, budget):
     return False
 
 def addPurchase(name, cost, budgetTitle, uncat, date):
+    if name is None or cost is None:
+        return False
     bgt = Budgets.query.filter_by(title=budgetTitle).first()
     if(not bgt is None):
         bgt.budgetSpent = bgt.budgetSpent+int(cost)
@@ -72,8 +74,24 @@ def addPurchase(name, cost, budgetTitle, uncat, date):
     db.session.commit()
     return True
 
+
+def delCat(id):
+    bgt = Budgets.query.filter_by(id=id).first()
+    t = bgt.title
+    item = Items.query.filter_by(budgetTitle=t)
+    for i in item:
+        db.session.delete(i)
+        db.session.commit()
+    db.session.delete(bgt)
+    db.session.commit()
+    return True
+
 @app.route('/cats', methods = ["POST", "GET","DELETE"])
 def cats():
+    if request.method == 'DELETE' and 'del_budget_id' in request.json:
+        return json.dumps({
+            'completed': delCat(request.json['del_budget_id'])
+        })
     if request.method == 'POST' and 'new_cat_name' in request.json and 'new_cat_limit' in request.json:
         return json.dumps({
             'completed': addCat(request.json['new_cat_name'], request.json['new_cat_limit'])
@@ -140,4 +158,6 @@ def default():
 
 
 if __name__ == '__main__':
+    db.drop_all()
+    db.create_all()
     app.run()
