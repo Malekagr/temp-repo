@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+    <script type="text/javascript" src="{{ url_for('static', filename='budget.js') }}"></script>
+</head>
+<a href= "/"> <br> Return to main page </a>
+<h1>{{ title }} budget: {{ spent }}$/{{ budget }}$</h1>
+<body>
+            <input type="text" placeholder="Purchase" id="PurchaseName" name="BudgetName" value="" />
+			<input type="text" placeholder="$" id="PurchaseCost" name="BudgetValue" value="" />
+            <input type="date" id="date" name="Purchase Date">
+			<button onclick ="addPurchase()">Add Purchase</button>
+            <input type="hidden" placeholder="Event's name" id="budgetTitle" value="{{ title }}">
+<br>
+<h1>Purchases</h1>
+    {% for p in pl %}
+            <li>{{ p.itemName }}: {{ p.itemPrice }}$ on {{ p.date }}  <button onclick ="deletePurchase(this)">Remove</button>
+            <input type="hidden" placeholder="Event's name" id="pitemname" value="{{ p.id }}" value="{{ p.budgetTitle }}">
+            </li>
+    {%  endfor %}
+</body>
+</html>

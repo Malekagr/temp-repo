@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>FrontPage</title>
+<script type="text/javascript" src="{{ url_for('static', filename='front.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='budget.js') }}"></script>
+
+</head>
+<body>
+<h1> Uncategorized Purchases: {{ spent }}$</a> </h1>
+		<form method="get">
+        <a href= "/purchases/uncategorized">Go To Uncategorized</a>
+            <br>
+            <input type="text" placeholder="Budget Title" id="PurchaseN" name="BudgetName" value="" />
+			<input type="text" placeholder="Allotted Budget" id="PurchaseValue" name="BudgetValue" value="" />
+            <input type="date" id="date" name="Purchase Date">
+            <button onclick ="addUPurchase()">Add Uncategorized Purchase</button>
+		</form>
+
+
+    <h1>Create New Category</h1>
+
+
+            <input type="text" placeholder="Budget Title" id="BudgetName" name="BudgetName" value="" />
+			<input type="text" placeholder="Allotted Budget" id="BudgetValue" name="BudgetValue" value="" />
+			<button onclick ="addCategory()">Add Category</button>
+
+
+    <div id = "categories">Categories</div>
+
+    {% for b in bl %}
+
+            <li><a href= "/purchases/{{ b.title }}">{{ b.title}}</a> - Budget: {{b.budgetSpent}}$/{{ b.budgetLimit}}$  </li>
+            <input type="hidden" placeholder="Event's name" name="chatRoomName" value="{{ b.title }}">
+    {%  endfor %}
+
+<br>
+<h1></h1>
+</body>
+</html>

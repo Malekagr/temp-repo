@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Budget Homepage</title>
+    <script type="text/javascript" src="{{ url_for('static', filename='budgeter.js') }}"></script>
+</head>
+
+<body>
+<h1>Budgets</h1>
+        <form name="theForm">
+			<input type="text" placeholder="Budget Title" id="BudgetName" name="BudgetName" value="" />
+			<input type="text" placeholder="Allotted Budget" id="BudgetValue" name="BudgetValue" value="" />
+			<input type="button" id="theButton" value="Submit" />
+		</form>
+
+
+
+<table id="theTable">
+			{% for i in items %}
+				<tr>
+					{% for j in i %}
+                        <td>{{ j }}</td>
+					{% endfor %}
+                    <a href= "/category/{{ j }}</a>
+				</tr>
+			{% else %}
+				<tr><td>Whole lot of nothing!</td></tr>
+			{% endfor %}
+</table>
+
+</body>
+</html>
