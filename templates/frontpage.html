@@ -40,6 +40,8 @@
             <li><a href= "/purchases/{{ b.title }}">{{ b.title}}</a> - Budget: {{b.budgetSpent}}$/{{ b.budgetLimit}}$
              <button onclick ="deleteCategory(this)">Remove</button>
                 <input type="hidden" placeholder="Event's name" id="pitemname" value="{{ b.id }}">
+             <button onclick ="goToPurchases(this)">Go To Purchases</button>
+            <input type="hidden" placeholder="Event's name" id="pitemname" value="{{ b.title }}">
             </li>
             <input type="hidden" placeholder="Event's name" name="chatRoomName" value="{{ b.title }}">
     {%  endfor %}

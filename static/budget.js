@@ -179,7 +179,7 @@ function deletePurchase(button){
      var xhr = new XMLHttpRequest();
      console.log("Title: "+title);
      console.log("DELETE: "+val)
-    xhr.open("DELETE", '/cats', true);
+    xhr.open("DELETE", '/purchases', true);
     xhr.setRequestHeader('Content-Type', 'application/json');
     var data = JSON.stringify(
                 {

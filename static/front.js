@@ -2,6 +2,48 @@
 var b = document.getElementById("theButton");
 
 
+
+
+function goToPurchases(button){
+    var element = button;
+    var val = element.nextSibling.nextSibling.value;
+     var xhr = new XMLHttpRequest();
+     console.log("POST: "+val)
+    //xhr.open("GET", '/purchases', true);
+    //xhr.setRequestHeader('Content-Type', 'application/json');
+    var data = JSON.stringify(
+                {
+                    get_budget_id: val
+                }
+    );
+  //  xhr.onload = function () {
+            //var res = JSON.parse(xhr.responseText);
+          //  if (xhr.status !== 200) {
+              //  console.log("Network Error:" + xhr.status);
+                //signal();
+            //}
+            if (1==1) {
+                //signal('New category was created');
+                console.log("GET PURCHASES - GET: /purchases");
+                console.log('SENT: ');
+                console.log("BUDGET ID: "+data);
+                console.log('RECEIVED: ');
+                console.log('Completed');
+                console.log("--------------------------------");
+
+
+            }
+            else {
+                // Bad
+                console.log("Failed to get");
+
+            }
+           // window.open(url, "_self");
+            window.location.replace('/purchases/'+val);
+       // };
+       // xhr.send(null);
+}
+
 function deleteCategory(button){
      var element = button;
      var val = element.nextSibling.nextSibling.value;

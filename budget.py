@@ -76,6 +76,7 @@ def addPurchase(name, cost, budgetTitle, uncat, date):
 
 
 def delCat(id):
+    print(id)
     bgt = Budgets.query.filter_by(id=id).first()
     t = bgt.title
     item = Items.query.filter_by(budgetTitle=t)
@@ -84,11 +85,13 @@ def delCat(id):
         db.session.commit()
     db.session.delete(bgt)
     db.session.commit()
+    print("DOne")
     return True
 
 @app.route('/cats', methods = ["POST", "GET","DELETE"])
 def cats():
     if request.method == 'DELETE' and 'del_budget_id' in request.json:
+        print("HEERE I AM")
         return json.dumps({
             'completed': delCat(request.json['del_budget_id'])
         })
